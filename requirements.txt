@@ -15,7 +15,6 @@ realesrgan
 scikit-image>=0.19
 timm==0.4.12
 transformers==4.19.2
-torch
 einops
 jsonmerge
 clean-fid
