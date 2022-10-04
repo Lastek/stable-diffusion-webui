@@ -250,8 +250,8 @@ def create_random_tensors(shape, seeds, subseeds=None, subseed_strength=0.0, see
 
 
 def fix_seed(p):
-    p.seed = int(random.randrange(4294967294)) if p.seed is None or p.seed == '' or p.seed == -1 else p.seed
-    p.subseed = int(random.randrange(4294967294)) if p.subseed is None or p.subseed == '' or p.subseed == -1 else p.subseed
+    p.seed = int(random.randrange(4503599627370496)) if p.seed is None or p.seed == '' or p.seed == -1 else p.seed
+    p.subseed = int(random.randrange(4503599627370496)) if p.subseed is None or p.subseed == '' or p.subseed == -1 else p.subseed
 
 
 def create_infotext(p, all_prompts, all_seeds, all_subseeds, comments, iteration=0, position_in_batch=0):
