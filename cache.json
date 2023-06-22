@@ -1,0 +1,40 @@
+{
+    "hashes": {
+        "checkpoint/v2-1_768-ema-pruned.ckpt": {
+            "mtime": 1670554660.394085,
+            "sha256": "ad2a33c361c1f593c4a1fb32ea81afce2b5bb7d1983c6b94793a26a3b54b08a0"
+        },
+        "checkpoint/protogenX58RebuiltScifi_10.ckpt": {
+            "mtime": 1676630269.6811535,
+            "sha256": "e0de8aae3eca7c8b23c668f3d43f4f203f9c0d4365a31072ccb8ff864004cd42"
+        },
+        "checkpoint/protogenV22Anime_22.ckpt": {
+            "mtime": 1673258250.2148037,
+            "sha256": "bb725eaf2ed90092e68b892a1d6262f538131a7ec6a736e50ae534be6b5bd7b1"
+        },
+        "checkpoint/v2-1_512-ema-pruned.ckpt": {
+            "mtime": 1672566204.656732,
+            "sha256": "88ecb782561455673c4b78d05093494b9c539fc6bfc08f3a9a4a0dd7b0b10f36"
+        },
+        "checkpoint/v1-5-pruned-emaonly.ckpt": {
+            "mtime": 1666326428.6965113,
+            "sha256": "cc6cb27103417325ff94f52b7a5d2dde45a7515b25c255d8e396c90014281516"
+        },
+        "checkpoint/v2-512-inpainting-ema.ckpt": {
+            "mtime": 1672489607.4302106,
+            "sha256": "2a208a7ded5d42dcb0c0ec908b23c631002091e06afe7e76d16cd11079f8d4e3"
+        },
+        "checkpoint/elldrethsRetroMix_v10.ckpt": {
+            "mtime": 1673257218.8940797,
+            "sha256": "8c6da97f03576dde964f3e508ef5595a28f0898dcdb275f1601d410e1c8adc03"
+        },
+        "checkpoint/roboeticsMix_rmix01Ckpt.ckpt": {
+            "mtime": 1673258153.016523,
+            "sha256": "a7bd5ab091ccc786d14d82b03e9497785210c4213bd4facc04fe17c547fcccd8"
+        },
+        "checkpoint/Inkpunk-Diffusion-v2.ckpt": {
+            "mtime": 1670932708.4973772,
+            "sha256": "2182245415908822cbac065128a4c5144cc547d0701feb21241cb4e70bb5cf56"
+        }
+    }
+}

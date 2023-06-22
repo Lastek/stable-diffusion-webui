@@ -1,0 +1,1 @@
+python launch.py --allow-code --deepdanbooru --xformers --enable-console-prompts --no-half-vae --listen 

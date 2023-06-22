@@ -1,0 +1,2 @@
+set GABCHILLSCHKPT="F:\Dev\stable-diffusion-webui\models\Stable-diffusion\GabChills.ckpt"
+python launch.py --allow-code --xformers --enable-console-prompts --no-half-vae --listen --no-half --ckpt %GABCHILLSCHKPT%
