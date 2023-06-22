@@ -6,12 +6,11 @@ import facexlib
 import gfpgan
 
 import modules.face_restoration
-from modules import shared, devices, modelloader
-from modules.paths import models_path
+from modules import paths, shared, devices, modelloader
 
 model_dir = "GFPGAN"
 user_path = None
-model_path = os.path.join(models_path, model_dir)
+model_path = os.path.join(paths.models_path, model_dir)
 model_url = "https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.4.pth"
 have_gfpgan = False
 loaded_gfpgan_model = None
@@ -21,7 +20,7 @@ def gfpgann():
     global loaded_gfpgan_model
     global model_path
     if loaded_gfpgan_model is not None:
-        loaded_gfpgan_model.gfpgan.to(shared.device)
+        loaded_gfpgan_model.gfpgan.to(devices.device_gfpgan)
         return loaded_gfpgan_model
 
     if gfpgan_constructor is None:
@@ -36,23 +35,35 @@ def gfpgann():
     else:
         print("Unable to load gfpgan model!")
         return None
-    model = gfpgan_constructor(model_path=model_file, upscale=1, arch='clean', channel_multiplier=2, bg_upsampler=None)
-    model.gfpgan.to(shared.device)
+    if hasattr(facexlib.detection.retinaface, 'device'):
+        facexlib.detection.retinaface.device = devices.device_gfpgan
+    model = gfpgan_constructor(model_path=model_file, upscale=1, arch='clean', channel_multiplier=2, bg_upsampler=None, device=devices.device_gfpgan)
     loaded_gfpgan_model = model
 
     return model
+
+
+def send_model_to(model, device):
+    model.gfpgan.to(device)
+    model.face_helper.face_det.to(device)
+    model.face_helper.face_parse.to(device)
 
 
 def gfpgan_fix_faces(np_image):
     model = gfpgann()
     if model is None:
         return np_image
+
+    send_model_to(model, devices.device_gfpgan)
+
     np_image_bgr = np_image[:, :, ::-1]
     cropped_faces, restored_faces, gfpgan_output_bgr = model.enhance(np_image_bgr, has_aligned=False, only_center_face=False, paste_back=True)
     np_image = gfpgan_output_bgr[:, :, ::-1]
 
+    model.face_helper.clean_all()
+
     if shared.opts.face_restoration_unload:
-        model.gfpgan.to(devices.cpu)
+        send_model_to(model, devices.cpu)
 
     return np_image
 
@@ -67,7 +78,7 @@ def setup_model(dirname):
 
     try:
         from gfpgan import GFPGANer
-        from facexlib import detection, parsing
+        from facexlib import detection, parsing  # noqa: F401
         global user_path
         global have_gfpgan
         global gfpgan_constructor
